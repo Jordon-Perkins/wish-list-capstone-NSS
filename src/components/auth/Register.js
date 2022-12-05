@@ -21,7 +21,7 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
-                    localStorage.setItem("kandy_user", JSON.stringify({
+                    localStorage.setItem("wish_user", JSON.stringify({
                         id: createdUser.id,
                         staff: createdUser.isStaff
                     }))
@@ -56,11 +56,11 @@ export const Register = (props) => {
     return (
         <main style={{ textAlign: "center" }}>
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Kandy Korner</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register for WishList</h1>
                 <fieldset>
-                    <label htmlFor="fullName"> Full Name </label>
+                    <label htmlFor="name"> Your Name </label>
                     <input onChange={updateUser}
-                           type="text" id="fullName" className="form-control"
+                           type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>

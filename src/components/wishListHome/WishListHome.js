@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { WishList } from "./WishList"
+import { WishLists } from "./WishLists"
 import { ListSearch } from "./ListSearch"
 
 
@@ -8,7 +8,7 @@ export const WishListHome = () => {
 
     return <>
             <ListSearch setterFunction={setSearchTerms} />
-            <WishList searchTermState={searchTerms} /> 
+            <WishLists searchTermState={searchTerms} /> 
         </>
 }
 

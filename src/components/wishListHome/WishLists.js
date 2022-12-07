@@ -9,10 +9,10 @@
 
 
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { WishList } from "./WishList"
 
-export const WishList = ({searchTermState}) => {
+export const WishLists = ({searchTermState}) => {
 
     const navigate = useNavigate( )
 
@@ -50,15 +50,15 @@ export const WishList = ({searchTermState}) => {
     )
 
 
-    // useEffect(
-    //     () => {
-    //         const searchedLists = filteredLists.filter(users => {
-    //             return users?.name.toLowerCase().startsWith(searchTermState.toLowerCase())
-    //         })
-    //         setFiltered(searchedLists)
-    //     },
-    //     [searchTermState]
-    //     )
+    useEffect(
+        () => {
+            const searchedLists = filteredLists.filter(users => {
+                return users?.name.toLowerCase().startsWith(searchTermState.toLowerCase())
+            })
+            setFiltered(searchedLists)
+        },
+        [searchTermState]
+        )
 
 
 

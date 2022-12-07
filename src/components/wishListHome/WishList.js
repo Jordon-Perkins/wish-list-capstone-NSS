@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 
 
 export const WishList = ({wishListObject, wishUserObject}) => {
-    return (wishUserObject?.userId 
+    return (
+        wishUserObject?.id === wishListObject?.userId
         ? <>
         <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
         <Link className="whichList" to="/List">Show me my List</Link>

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { WishLists } from "./WishLists"
 import { ListSearch } from "./ListSearch"
+import { List } from "../list/List"
 
 
 export const WishListHome = () => {
@@ -9,6 +10,7 @@ export const WishListHome = () => {
     return <>
             <ListSearch setterFunction={setSearchTerms} />
             <WishLists searchTermState={searchTerms} /> 
+            
         </>
 }
 

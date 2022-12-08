@@ -22,7 +22,7 @@ export const WishLists = ({searchTermState}) => {
     
     const [filteredLists, setFiltered] = useState([])
     // const[ userOwns, updateOwns] = useState(true)
-    // const [users, setUsers] = useState([])
+    // const [user, setUsers] = useState([])
     // const [wishLists, setWishLists] = useState([])
 
     // useEffect(
@@ -52,20 +52,30 @@ export const WishLists = ({searchTermState}) => {
 
     useEffect(
         () => {
-            const searchedLists = filteredLists.filter(users => {
-                return users?.name.toLowerCase().startsWith(searchTermState.toLowerCase())
+            if(searchTermState === "") {
+                fetch(`http://localhost:8088/wishList?_expand=user`)
+            .then(response => response.json())
+            .then((listArray) => {
+                setFiltered(listArray)
+                // setUsers(listArray)
             })
-            setFiltered(searchedLists)
+            }
+            else {
+                const searchedLists = filteredLists.filter( wishList => {
+                    return wishList?.user?.name.toLowerCase().includes(searchTermState.toLowerCase())
+                })
+                setFiltered(searchedLists)
+            }
         },
         [searchTermState]
         )
 
 
 
-
+        
 
     
-    console.log(filteredLists)
+    
 
     return <>  
     <article className="wishList">

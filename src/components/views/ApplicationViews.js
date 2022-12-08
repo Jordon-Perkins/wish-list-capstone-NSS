@@ -1,5 +1,6 @@
 import { WishListHome } from "../wishListHome/WishListHome.js"
 import { Outlet, Route, Routes } from "react-router-dom"
+import { List } from "../list/List.js"
 
 export const ApplicationViews = () => {
 	return <>
@@ -16,9 +17,11 @@ export const ApplicationViews = () => {
             }></Route>
             
             <Route path="wishListHome" element={ <WishListHome />  } />
+            <Route path="list/:wishListId" element={ <List />  } />
 
         </Routes>
 
 
 	</>
 }
+

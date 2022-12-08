@@ -6,13 +6,17 @@ export const WishList = ({wishListObject, wishUserObject}) => {
         wishUserObject?.id === wishListObject?.userId
         ? <>
         <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
-        <Link className="whichList" to="/List">Show me my List</Link>
+        <Link className="whichList" to={`/list/${wishListObject?.id}`}>Show me my List</Link>
         </>
         :<>
         <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
-        <Link className="whichList" to="/List">Let's find some Gifts</Link>
+        <Link className="whichList" to={`/list/${wishListObject?.id}`}>Let's find some Gifts</Link>
         </>)
 }
+
+
+
+// <Link to={`/character/${ownedCharacter.id}`}></Link>
 
 
 /* <section className="employee">

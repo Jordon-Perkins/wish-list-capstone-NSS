@@ -8,16 +8,17 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 
-// import "./.css"
-
-
+import "./List.css"
 
 
 export const List = () => {
 
     const [items, setItems] = useState([])
     const { wishListId } = useParams()
-
+    const localWishUser = localStorage.getItem("wish_user")
+    const wishUserObject = JSON.parse(localWishUser)
+    const [purchase, setPurchased] = useState({})
+    const [wishList, setList] = useState({})
 
     useEffect(
         () => {
@@ -31,31 +32,106 @@ export const List = () => {
         [] 
     )
 
+    useEffect(
+      () => {
+          fetch(`http://localhost:8088/wishLists/${wishListId}?`)
+              .then(response => response.json())
+              .then((wishList) => {
+                  setList(wishList)
+              })
+
+      },
+      [] 
+  )
+
+    useEffect(
+      () => {
+//find that WLObj that is assocciated with the radio click
+//  purchaed.id is coming from the radio button onChange
+        const result = items.find(element => {
+          return element.id === purchase.id;
+        });
+
+        const copy = {...result}
+        copy.purchased = purchase.purchased 
+        
+      fetch(`http://localhost:8088/wishListItems/${purchase.id}`, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(copy)
+      })
+          .then(response => response.json())
+      },
+      [purchase]
+  )
+
+  return <>
+    {
+      wishUserObject.id === wishList.userId
+      ? 
+        <>
+          <button onClick={ () => {}}>Edit an Item</button>
+          <button onClick={ () => {}}>Delete an Item</button>
+          <button onClick={ () => {}}>Add A New Item</button>
+          <div className="items-container">
+          {
+            items.map((itemObj) => {
+              return (
+                <div className="item-card" key={itemObj.id}>
+                  <img
+                    style={{cursor: "pointer"}}
+                      src={itemObj.picture}
+                      alt={itemObj.name}
+                      className="item-img"
+                    />
+                  <p className="item-name">{itemObj.itemName}</p>
+                  <p>{itemObj.description}~${itemObj.price}</p>
+                  <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
+                </div>
+              );
+            })
+          }
+        </div>
+      </>
+      : 
+      <>
+        <div className="items-container">
+        {
+          items.map((itemObj) => {
+            return (
+              <div className="item-card" key={itemObj.id}>
+                <img
+                  style={{cursor: "pointer"}}
+                    src={itemObj.picture}
+                    alt={itemObj.name}
+                    className="item-img"/>
+                    
+                <p className="item-name">{itemObj.itemName}</p>
+                <p>{itemObj.description}~${itemObj.price}</p>
+                <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
+                Purchased? {itemObj.purchased} 
+                <input type="checkbox" 
+                  name="purchased" 
+                  value={`${itemObj.id}`} 
+                  checked={itemObj.purchased}
+                  onChange={ (event) => {
+                    setPurchased({id: parseInt(event.target.value), purchased: event.target.checked })
+                }}
+                  
+                />
+              </div>
+            );
+          })
+        }
+        </div>
+      </>
+    }
+  </>
+}
 
 
-return (
-    <>
-    <div className="items-container">
-      {items.map((itemObj) => {
-        return (
-          <div className="item-card" key={itemObj.id}>
+// Boolean(event.target.value)
 
-            <img
-            style={{cursor: "pointer"}}
-              src={itemObj.picture}
-              alt={itemObj.name}
-              className="item-img"
-            />
-            <div className="item-name">{itemObj.itemName}</div>
-            <p>{itemObj.description}/${itemObj.price}</p>
-            <Link className="objLink" to="">{itemObj.link}</Link>
-            <input type="radio" name="purchased" value="${itemObj.id}" /> ${itemObj.purchased}
-       
-          </div>
-        );
-      })}
-    </div>
-    </>
-  );
-};
-
+// parseInt(event.target.value)

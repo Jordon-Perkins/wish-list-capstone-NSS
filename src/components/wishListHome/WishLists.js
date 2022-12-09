@@ -38,7 +38,7 @@ export const WishLists = ({searchTermState}) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:8088/wishList?_expand=user`)
+        fetch(`http://localhost:8088/wishLists?_expand=user`)
             .then(response => response.json())
             .then((listArray) => {
                 setFiltered(listArray)
@@ -53,7 +53,7 @@ export const WishLists = ({searchTermState}) => {
     useEffect(
         () => {
             if(searchTermState === "") {
-                fetch(`http://localhost:8088/wishList?_expand=user`)
+                fetch(`http://localhost:8088/wishLists?_expand=user`)
             .then(response => response.json())
             .then((listArray) => {
                 setFiltered(listArray)

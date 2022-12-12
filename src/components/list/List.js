@@ -6,7 +6,8 @@
 
 
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useNavigate ,useParams } from "react-router-dom"
+
 
 import "./List.css"
 
@@ -19,16 +20,18 @@ export const List = () => {
     const wishUserObject = JSON.parse(localWishUser)
     const [purchase, setPurchased] = useState({})
     const [wishList, setList] = useState({})
+    const navigate = useNavigate()
 
-    useEffect(
-        () => {
-            fetch(`http://localhost:8088/wishListItems?wishListId=${wishListId}`)
+  const resetItems = () => {
+    fetch(`http://localhost:8088/wishListItems?wishListId=${wishListId}`)
                 .then(response => response.json())
                 .then((itemsArray) => {
                     setItems(itemsArray)
                 })
+  }
 
-        },
+    useEffect(
+        resetItems,
         [] 
     )
 
@@ -43,6 +46,20 @@ export const List = () => {
       },
       [] 
   )
+
+  const deleteButton = (id) => {
+    if (wishUserObject.id) {
+        return <button onClick={() => {
+            fetch(`http://localhost:8088/wishListItems/${id}`, {
+                method: "DELETE",
+            })
+            .then(resetItems)
+        }} className="wish_delete">Delete</button>
+    }
+    else {
+        return " "
+    }
+}
 
     useEffect(
       () => {
@@ -72,9 +89,7 @@ export const List = () => {
       wishUserObject.id === wishList.userId
       ? 
         <>
-          <button onClick={ () => {}}>Edit an Item</button>
-          <button onClick={ () => {}}>Delete an Item</button>
-          <button onClick={ () => {}}>Add A New Item</button>
+          <button onClick={ () => { navigate(`/list/${ wishListId }/add`)}}>Add A New Item</button>
           <div className="items-container">
           {
             items.map((itemObj) => {
@@ -89,6 +104,8 @@ export const List = () => {
                   <p className="item-name">{itemObj.itemName}</p>
                   <p>{itemObj.description}~${itemObj.price}</p>
                   <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
+                  { deleteButton(itemObj.id) }
+                  <button onClick={ () => { navigate("/EditListItemForm")}}>Edit an Item</button>
                 </div>
               );
             })

@@ -1,6 +1,8 @@
 import { WishListHome } from "../wishListHome/WishListHome.js"
 import { Outlet, Route, Routes } from "react-router-dom"
 import { List } from "../list/List.js"
+import { NewListItemForm } from "../list/NewListItemForm.js"
+// import { EditListItemForm } from "../list/EditListItemForm.js"
 
 export const ApplicationViews = () => {
 	return <>
@@ -18,6 +20,8 @@ export const ApplicationViews = () => {
             
             <Route path="wishListHome" element={ <WishListHome />  } />
             <Route path="list/:wishListId" element={ <List />  } />
+            <Route path="list/:wishListId/add" element={ <NewListItemForm />  } />
+            {/* <Route path="list/:wishListId" element={ <EditListItemForm />  } /> */}
 
         </Routes>
 

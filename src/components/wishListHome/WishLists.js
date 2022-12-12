@@ -9,12 +9,12 @@
 
 
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { WishList } from "./WishList"
 
 export const WishLists = ({searchTermState}) => {
 
-    const navigate = useNavigate( )
+    // const navigate = useNavigate( )
 
     const localWishUser = localStorage.getItem("wish_user")
     const wishUserObject = JSON.parse(localWishUser)

@@ -6,28 +6,30 @@
 
 //you can only edit your own list
 
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import { useNavigate ,useParams } from "react-router-dom"
 
-export const NewListItemForm = ({ seasonsFromDecStation, setItems }) => {
-  const [categories, setCategories] = useState([]);
+export const NewListItemForm = () => {
+  
+  // const [ items, setItems ] = useState([])
+  const { wishListId } = useParams()
   const [userChoices, setUserChoices] = useState({
-    wishListId: 0,
     purchased: false,
     itemName: "",
     link: "",
     picture: "",
     description: "",
-    price: "",
-    dateAdded: ""
+    price: ""
 
   });
 
+  const navigate = useNavigate()
+
   // useEffect(() => {
-  //   fetch(`http://localhost:8088/categories`)
+  //   fetch(`http://localhost:8088/wishListItems`)
   //     .then((response) => response.json())
-  //     .then((theConvertedJSONDataThatsNowJavascriptForTheCategories) => {
-  //       setCategories(theConvertedJSONDataThatsNowJavascriptForTheCategories);
+  //     .then((itemsArray) => {
+  //       setItems(itemsArray);
   //     });
   // }, []);
 
@@ -38,79 +40,63 @@ export const NewListItemForm = ({ seasonsFromDecStation, setItems }) => {
     setUserChoices(copyOfUserChoices);
   };
 
-  const handleIntegerInputChange = (event) => {
-    const copyOfUserChoices = { ...userChoices };
-    copyOfUserChoices[event.target.id] = parseInt(event.target.value);
-    setUserChoices(copyOfUserChoices);
-  };
+  // const handleIntegerInputChange = (event) => {
+  //   const copyOfUserChoices = { ...userChoices };
+  //   copyOfUserChoices[event.target.id] = parseInt(event.target.value);
+  //   setUserChoices(copyOfUserChoices);
+  // };
 
   const handleSaveNewItem = (event) => {
     event.preventDefault();
-    if (
-      userChoices.itemName &&
-      userChoices.picture &&
-      userChoices.wishListId &&
-      userChoices.purchased &&
-      userChoices.link &&
-      userChoices.picture &&
-      userChoices.description &&
-      userChoices.price &&
-      userChoices.dateAdded 
-    ) {
-      fetch("http://localhost:8088/wishListItems", {
+     {
+              const apiChoices = {
+                wishListId: wishListId,
+                purchased: userChoices.purchased,
+                itemName: userChoices.itemName,
+                link: userChoices.link,
+                picture: userChoices.picture,
+                description: userChoices.description,
+                price: userChoices.price,
+                dateAdded: userChoices.dateAdded
+              };
+            
+        fetch("http://localhost:8088/wishListItems?_expand=wishList", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userChoices),
+        body: JSON.stringify(apiChoices),
       })
         .then((res) => res.json())
         .then(() => {
-          fetch("http://localhost:8088/wishListItems")
-            .then((res) => res.json())
-            .then((itemsData) => {
-              setItems(itemsData);
-              setUserChoices({
-                wishListId: 0,
-                purchased: false,
-                itemName: "",
-                link: "",
-                picture: "",
-                description: "",
-                price: "",
-                dateAdded: ""
-              });
-            });
-        })
-        .then(() => {
-          navigate("/List")
+          navigate(`/list/${wishListId}`)
      });
-    } else {
-      alert("Please complete form");
-    }
+    } 
   };
 
   return (
     <>
-      <form>
-        <h2 className="decoration-form-title">
-          Add WishList Item
+      <form className="newItemForm">
+        <h2 className="wish-form-title">
+          Add a new WishList Item
         </h2>
         <fieldset>
           <div className="form-group">
+            <label htmlFor="name">New Item:</label>
             <input
               required
-              id="name"
+              id="itemName"
               type="text"
               className="form-control"
               placeholder="What is your Item named?"
-              value={userChoices.name}
+              value={userChoices.itemName}
               onChange={handleInputChange}
             />
           </div>
         </fieldset>
         <fieldset>
           <div className="form-group">
+            <label htmlFor="description">Description of Item:</label>
             <input
               required
               id="description"
@@ -124,6 +110,7 @@ export const NewListItemForm = ({ seasonsFromDecStation, setItems }) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
+            <label htmlFor="link">URL link for Item:</label>
             <input
               required
               id="link"
@@ -137,6 +124,7 @@ export const NewListItemForm = ({ seasonsFromDecStation, setItems }) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
+          <label htmlFor="picture">Picture of Item:</label>
             <input
               required
               id="picture"
@@ -150,38 +138,20 @@ export const NewListItemForm = ({ seasonsFromDecStation, setItems }) => {
         </fieldset>
         <fieldset>
                 <div className="form-group">
+                    <label htmlFor="price">Price for Item:</label>
                     <input type="number"
                         className="form-control"
                         value={userChoices.price}
                         onChange={
                             (evt) => {
                                 const copy = {...userChoices}
-                                copy.rate = parseFloat(evt.target.value, 2) 
+                                copy.price = parseFloat(evt.target.value, 2) 
                                 setUserChoices(copy)
                             }
                         } />
                 </div>
         </fieldset>
-        <fieldset>
-          <div className="form-group">
-            {wishListItems.map((wishListItem) => {
-              return (
-                <div key={wishListItem.id} className="radio">
-                  <label>
-                    <input
-                      id="purchased"
-                      type="radio"
-                      value={wishListItem.id}
-                      checked={userChoices.purchased === wishListItem.id}
-                      onChange={handleIntegerInputChange}
-                    />
-                    {wishListItem.purchased}
-                  </label>
-                </div>
-              );
-            })}
-          </div>
-        </fieldset>
+        
 
         <button className="btn" onClick={handleSaveNewItem }>
           Add Decoration

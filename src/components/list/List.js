@@ -18,7 +18,6 @@ export const List = () => {
     const { wishListId } = useParams()
     const localWishUser = localStorage.getItem("wish_user")
     const wishUserObject = JSON.parse(localWishUser)
-    const [purchase, setPurchased] = useState({})
     const [wishList, setList] = useState({})
     const navigate = useNavigate()
 
@@ -61,28 +60,25 @@ export const List = () => {
     }
 }
 
-    useEffect(
-      () => {
-//find that WLObj that is assocciated with the radio click
-//  purchaed.id is coming from the radio button onChange
-        const result = items.find(element => {
-          return element.id === purchase.id;
-        });
+const makePurchase = (purchase) => {
+  const result = items.find(element => {
+    return element.id === purchase.id;
+  });
 
-        const copy = {...result}
-        copy.purchased = purchase.purchased 
-        
-      fetch(`http://localhost:8088/wishListItems/${purchase.id}`, {
-          method: "PUT",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify(copy)
-      })
-          .then(response => response.json())
-      },
-      [purchase]
-  )
+  const copy = { ...result }
+  copy.purchased = purchase.purchased
+
+  fetch(`http://localhost:8088/wishListItems/${purchase.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(copy)
+  })
+    .then(response => response.json())
+    .then(resetItems)
+}
+
 
   return <>
     {
@@ -139,7 +135,7 @@ export const List = () => {
                   value={`${itemObj.id}`} 
                   checked={itemObj.purchased}
                   onChange={ (event) => {
-                    setPurchased({id: parseInt(event.target.value), purchased: event.target.checked })
+                    makePurchase({id: parseInt(event.target.value), purchased: event.target.checked })
                 }}
                   
                 />

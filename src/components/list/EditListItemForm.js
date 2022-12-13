@@ -12,19 +12,19 @@ export const EditListItemForm = () => {
         description: "",
         price: ""
     })
-    const { wishListId } = useParams()
+    const { wishListItemId, wishListId } = useParams()
     const navigate = useNavigate()
 
     useEffect(
         () => {
-            fetch(` http://localhost:8088/wishListItems/${wishListId}`)
+            fetch(` http://localhost:8088/wishListItems/${wishListItemId}`)
                 .then(response => response.json())
                 .then((data) => {
                     assignItem(data)
                 })
 
         },
-        [wishListId] 
+        [] 
     )
 
     const handleInputChange = (event) => {

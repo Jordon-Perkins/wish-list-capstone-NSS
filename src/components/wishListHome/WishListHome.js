@@ -8,6 +8,7 @@ export const WishListHome = () => {
     const [searchTerms, setSearchTerms] = useState("")
 
     return <>
+            <h2> Find the Wish List you are searching for! </h2>
             <ListSearch setterFunction={setSearchTerms} />
             <WishLists searchTermState={searchTerms} /> 
             

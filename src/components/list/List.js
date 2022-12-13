@@ -86,10 +86,14 @@ export const List = () => {
 
   return <>
     {
+     
+    }
+    {
       wishUserObject.id === wishList.userId
       ? 
         <>
-          <button onClick={ () => { navigate(`/list/${ wishListId }/add`)}}>Add A New Item</button>
+          <h2>Welcome to one of your Wish Lists!</h2>
+          <button onClick={ () => { navigate(`add`)}}>Add A New Item</button>
           <div className="items-container">
           {
             items.map((itemObj) => {
@@ -105,7 +109,7 @@ export const List = () => {
                   <p>{itemObj.description}~${itemObj.price}</p>
                   <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
                   { deleteButton(itemObj.id) }
-                  <button onClick={ () => { navigate("/EditListItemForm")}}>Edit an Item</button>
+                  <button onClick={ () => { navigate(`${ itemObj.id }/edit`)}}>Edit an Item</button>
                 </div>
               );
             })
@@ -114,6 +118,7 @@ export const List = () => {
       </>
       : 
       <>
+        <h2>What are we looking to gift today?</h2>
         <div className="items-container">
         {
           items.map((itemObj) => {

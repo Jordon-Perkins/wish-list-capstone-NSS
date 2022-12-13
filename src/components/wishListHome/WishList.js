@@ -2,16 +2,25 @@ import { Link } from "react-router-dom"
 
 
 export const WishList = ({wishListObject, wishUserObject}) => {
-    return (
-        wishUserObject?.id === wishListObject?.userId
-        ? <>
-        <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
-        <Link className="whichList" to={`/list/${wishListObject?.id}`}>Show me my List</Link>
-        </>
-        :<>
-        <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
-        <Link className="whichList" to={`/list/${wishListObject?.id}`}>Let's find some Gifts</Link>
-        </>)
+    return <>
+        
+        {
+            
+            wishUserObject?.id === wishListObject?.userId
+            ? 
+            <>
+            <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
+            <Link className="whichList" to={`/list/${wishListObject?.id}`}>Show me my List</Link>
+            </>
+            :
+            <>
+            <li key={`wishList--${wishListObject?.id}`}>{wishListObject?.listName} ~ Owned by {wishListObject?.user?.name}</li>
+            <Link className="whichList" to={`/list/${wishListObject?.id}`}>Let's find some Gifts</Link>
+            </>
+        }
+    </>
+        
+        
 }
 
 

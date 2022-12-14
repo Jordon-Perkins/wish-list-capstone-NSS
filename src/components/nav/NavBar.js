@@ -12,6 +12,9 @@ export const NavBar = () => {
                     navigate("/", {replace: true})
                 }}>Logout</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/wishListHome">Home</Link>
+            </li>
         </ul>
     )
 }

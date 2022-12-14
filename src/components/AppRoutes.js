@@ -7,7 +7,7 @@ import { Register } from "./auth/Register"
 import "./WishLists.css"
 
 
-export const WishLists = () => {
+export const AppRoutes = () => {
 	return <Routes>
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<Register />} />

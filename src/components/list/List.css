@@ -1,0 +1,44 @@
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 18rem;
+    padding: 18rem;
+  }
+  
+  .item-card {
+    flex: 0 0 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:darkcyan;
+    
+  }
+  
+  .item-img {
+    height: 20rem;
+    width: 20rem;
+    margin: 1rem;
+    box-shadow: 4px 3px 4px gray;
+    cursor: pointer;
+  }
+  
+  .item-img:hover {
+    box-shadow: 3px 2px 3px gray;
+  }
+  
+  .item-name {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0.75rem;
+    background-color: cadetblue;
+  }
+
+  .welcome {
+    text-align: center;
+  }
+
+  /* .wish_delete {
+    color:lightcoral;
+  } */

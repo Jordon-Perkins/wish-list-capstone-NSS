@@ -1,0 +1,41 @@
+fieldset {
+    width: 90%;
+    margin: 1rem;
+    border-radius: 9px;
+    box-shadow: 2px 2px 5px -1px grey;
+    border-style: none;
+    background-color: whitesmoke;
+    font-size: 1.10rem;
+    padding: 1rem;
+  }
+  
+  .btn {
+    align-self: flex-end;
+    margin-right: 3rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    box-shadow: 2px 2px 4px -1px grey;
+    background-color: darksalmon;
+    border: none;
+    color: white;
+    border-radius: 7px;
+  }
+  
+  .form-group {
+    margin: 1rem
+  }
+  
+  form label {
+    margin-right: 1rem
+  }
+  
+  form .radio {
+    margin: 0.25rem
+  }
+  
+  form input {
+    font-size: 1rem;
+    padding: 0.25rem;
+    border-radius: 6px;
+    border-style: double;
+  }

@@ -7,6 +7,7 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate ,useParams } from "react-router-dom"
+import "./List.css"
 
 
 import "./List.css"
@@ -53,7 +54,7 @@ export const List = () => {
                 method: "DELETE",
             })
             .then(resetItems)
-        }} className="wish_delete">Delete</button>
+        }} className="wish_delete" class="btn btn-danger">Delete</button>
     }
     else {
         return " "
@@ -88,8 +89,10 @@ const makePurchase = (purchase) => {
       wishUserObject.id === wishList.userId
       ? 
         <>
-          <h2>Welcome to one of your Wish Lists!</h2>
-          <button onClick={ () => { navigate(`add`)}}>Add A New Item</button>
+        <div className="welcome">
+          <h2 >Welcome to one of your Wish Lists!</h2>
+          <button className="new-item" onClick={ () => { navigate(`add`)}}>Add A New Item</button>
+        </div>
           <div className="items-container">
           {
             items.map((itemObj) => {
@@ -102,8 +105,8 @@ const makePurchase = (purchase) => {
                       className="item-img"
                     />
                   <p className="item-name">{itemObj.itemName}</p>
-                  <p>{itemObj.description}~${itemObj.price}</p>
-                  <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
+                  <p className="item-name">{itemObj.description}~${itemObj.price}</p>
+                  <a className="objLink" href={itemObj.link} target="_blank">Where to Find me!</a>
                   { deleteButton(itemObj.id) }
                   <button onClick={ () => { navigate(`${ itemObj.id }/edit`)}}>Edit an Item</button>
                 </div>
@@ -114,7 +117,7 @@ const makePurchase = (purchase) => {
       </>
       : 
       <>
-        <h2>What are we looking to gift today?</h2>
+        <h2 className="welcome">What are we looking to gift today?</h2>
         <div className="items-container">
         {
           items.map((itemObj) => {

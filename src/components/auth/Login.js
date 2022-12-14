@@ -17,7 +17,6 @@ export const Login = () => {
                     const user = foundUsers[0]
                     localStorage.setItem("wish_user", JSON.stringify({
                         id: user.id,
-                        staff: user.isStaff
                     }))
 
                     navigate("/")

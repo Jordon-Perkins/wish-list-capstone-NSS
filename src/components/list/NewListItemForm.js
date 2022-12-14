@@ -154,7 +154,7 @@ export const NewListItemForm = () => {
         
 
         <button className="btn" onClick={handleSaveNewItem }>
-          Add Decoration
+          Add your new Wish List item
         </button>
         
       </form>

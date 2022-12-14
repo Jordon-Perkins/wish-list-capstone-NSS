@@ -11,6 +11,7 @@
 import { useEffect, useState } from "react"
 // import { useNavigate } from "react-router-dom"
 import { WishList } from "./WishList"
+import "./WishList.css"
 
 export const WishLists = ({searchTermState}) => {
 

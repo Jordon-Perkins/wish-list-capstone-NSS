@@ -2,11 +2,20 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: darkcyan;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.navbar a {
+    color:white;
+    font-size: 2rem;
 }
 
 .navbar__item {
-    flex-basis: 20%;
+    flex-basis: 37%;
     list-style-type: none;
+    color:black;
 }
 
 .navbar__logout {

@@ -153,7 +153,7 @@ export const NewListItemForm = () => {
         </fieldset>
         
 
-        <button className="btn" onClick={handleSaveNewItem }>
+        <button type="button" class="btn btn-secondary" onClick={handleSaveNewItem }>
           Add your new Wish List item
         </button>
         

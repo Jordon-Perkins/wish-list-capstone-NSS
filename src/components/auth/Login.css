@@ -1,6 +1,12 @@
 .h1, h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     text-align: center;
+}
+
+.fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 fieldset {
@@ -8,38 +14,22 @@ fieldset {
     padding: 1rem 0;
     margin: 0;
     border: 0;
-    /* display: flex;
-    text-align: center; */
-}
-
-.container--login {
-    display: flex;
-    margin:auto;
-    justify-content: center;
-    align-items: center;
 }
 
 .form--login {
     display: inline-block;
-    margin: 0 auto;    
-    display: flex;
-    column-gap: 10px 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    
-
+    margin: 10rem;
+    padding: 4rem;
+    text-align: center;
 }
 
 .form--login > fieldset > input[type="email"] {
     width: 25em;
-    display: flex;
-    align-items: center;
 }
 
 .label--login {
     width: 8rem;
     display: inline-block;
-    text-align: center;
 }
 
 .form-control {
@@ -55,11 +45,14 @@ fieldset {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    
     -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-
+.container--login {
+    text-align: center;
+}
 
 .form--login {
     background-position-x: right;
@@ -70,10 +63,7 @@ fieldset {
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     border-radius: 10px;
-    display: flex;
-     align-content: center;
-     
-     
+    border: 2px solid white;
 }
 
 .button--close {
@@ -81,3 +71,6 @@ fieldset {
     bottom: -2rem;
 }
 
+.objLink {
+    color:white;
+}

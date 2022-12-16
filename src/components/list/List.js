@@ -54,7 +54,7 @@ export const List = () => {
                 method: "DELETE",
             })
             .then(resetItems)
-        }} className="wish_delete" class="btn btn-danger">Delete</button>
+        }} className="wish_delete" class="btn btn-warning">Delete</button>
     }
     else {
         return " "
@@ -91,7 +91,7 @@ const makePurchase = (purchase) => {
         <>
         <div className="welcome">
           <h2 >Welcome to one of your Wish Lists!</h2>
-          <button className="new-item" onClick={ () => { navigate(`add`)}}>Add A New Item</button>
+          <button className="new-item" class="btn btn-secondary" onClick={ () => { navigate(`add`)}}>Add A New Item</button>
         </div>
           <div className="items-container">
           {
@@ -104,11 +104,13 @@ const makePurchase = (purchase) => {
                       alt={itemObj.name}
                       className="item-img"
                     />
+                    <div className="itemDetails">
                   <p className="item-name">{itemObj.itemName}</p>
                   <p className="item-name">{itemObj.description}~${itemObj.price}</p>
                   <a className="objLink" href={itemObj.link} target="_blank">Where to Find me!</a>
                   { deleteButton(itemObj.id) }
-                  <button onClick={ () => { navigate(`${ itemObj.id }/edit`)}}>Edit an Item</button>
+                  <button class="btn btn-outline-light" onClick={ () => { navigate(`${ itemObj.id }/edit`)}}>Edit an Item</button>
+                  </div>
                 </div>
               );
             })
@@ -118,7 +120,7 @@ const makePurchase = (purchase) => {
       : 
       <>
         <h2 className="welcome">What are we looking to gift today?</h2>
-        <div className="items-container">
+        <div className="items-container container">
         {
           items.map((itemObj) => {
             return (
@@ -129,9 +131,10 @@ const makePurchase = (purchase) => {
                     alt={itemObj.name}
                     className="item-img"/>
                     
+                <div className="itemDetails"> 
                 <p className="item-name">{itemObj.itemName}</p>
                 <p>{itemObj.description}~${itemObj.price}</p>
-                <a className="objLink" href={itemObj.link} target="_blank">{itemObj.link}</a>
+                <a className="objLink" href={itemObj.link} target="_blank">Where to Find me!</a>
                 Purchased? {itemObj.purchased} 
                 <input type="checkbox" 
                   name="purchased" 
@@ -140,8 +143,10 @@ const makePurchase = (purchase) => {
                   onChange={ (event) => {
                     makePurchase({id: parseInt(event.target.value), purchased: event.target.checked })
                 }}
+                
                   
                 />
+                </div>
               </div>
             );
           })

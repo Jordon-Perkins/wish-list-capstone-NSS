@@ -1,16 +1,16 @@
 // ProductSearch.js from KandyKorner
-
+import "./WishList.css"
 
 export const ListSearch = ({ setterFunction }) => {
     return (
-        <div>
+        <div className="searchBar">
             <input 
                 onChange={
                     (changeEvent) => {
                         setterFunction(changeEvent.target.value)
                     }
                 }
-                type="text" placeholder=" Wish List are you looking for?" />
+                type="text" placeholder="Which Wish List?" />
         </div>
     )
 }

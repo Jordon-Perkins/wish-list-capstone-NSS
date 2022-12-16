@@ -69,7 +69,7 @@ export const Register = (props) => {
                         placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button class="btn btn-secondary" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

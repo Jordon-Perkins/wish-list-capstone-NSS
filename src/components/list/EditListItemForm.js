@@ -125,7 +125,7 @@ export const EditListItemForm = () => {
             </fieldset>
             
     
-            <button className="btn" onClick={ handleSaveButtonClick }>
+            <button type="button" class="btn btn-secondary" onClick={ handleSaveButtonClick }>
               Add this Item back to my Wish List
             </button>
             

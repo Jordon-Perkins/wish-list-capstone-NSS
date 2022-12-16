@@ -79,7 +79,7 @@ export const WishLists = ({searchTermState}) => {
     
 
     return <>  
-    <article className="wishList">
+    <article>
     {
         filteredLists.map(wishList => <WishList 
             key={`wishList--${wishList.id}`}

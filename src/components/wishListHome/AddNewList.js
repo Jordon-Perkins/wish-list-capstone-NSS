@@ -4,16 +4,17 @@ import "./WishList.css"
  
  export const AddNewList = () => {
 
-    const { userId } = useParams()
+    const localWishUser = localStorage.getItem("wish_user")
+    const wishUserObject = JSON.parse(localWishUser)
     const [userChoices, setUserChoices] = useState({
-        listName: "",
-        userId: userId
+        listName: ""
+        
     
       });
     
       const navigate = useNavigate()
 
-
+ 
       const handleInputChange = (event) => {
         const copyOfUserChoices = { ...userChoices };
         copyOfUserChoices[event.target.id] = event.target.value;
@@ -23,24 +24,24 @@ import "./WishList.css"
 
     const handleSaveNewList = (event) => {
         event.preventDefault();
-         {
-                  const apiList = {
-                    listName: userChoices.listName,
-                    userId: userId
-                  };
+         
+        const apiList = {
+          listName: userChoices.listName,
+          userId: wishUserObject.id
+        };
                 
-            fetch("http://localhost:8088/wishLists", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(apiList),
-          })
-            .then((res) => res.json())
-            .then(() => {
-              navigate('/')
-         });
-        } 
+        fetch("http://localhost:8088/wishLists", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(apiList),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            navigate('/')
+          });
+        
       };
 
     return (

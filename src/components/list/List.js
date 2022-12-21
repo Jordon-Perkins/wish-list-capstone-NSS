@@ -10,7 +10,7 @@ import { useNavigate ,useParams } from "react-router-dom"
 import "./List.css"
 
 
-import "./List.css"
+
 
 
 export const List = () => {

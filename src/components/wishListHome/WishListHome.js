@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { WishLists } from "./WishLists"
 import { ListSearch } from "./ListSearch"
 import { List } from "../list/List"
+import { useNavigate } from "react-router-dom"
 import "./WishList.css"
 
 
@@ -12,6 +13,7 @@ export const WishListHome = () => {
     const localWishUser = localStorage.getItem("wish_user")
     const wishUserObject = JSON.parse(localWishUser)
     const [user, setUser] = useState({})
+    const navigate = useNavigate()
 
     useEffect(
         () => {
@@ -28,12 +30,10 @@ export const WishListHome = () => {
     return <>
             <div className="main">
                     <h1>WishList</h1>
+                    <h3>Welcome, {user.name}</h3>
                     <div>Create your own WishList Today</div>
-                    <h3>Welcome, {user.name}
-                                  
-                                
-                    </h3>
-                    </div>
+                    <button className="btn btn-secondary" onClick={ () => { navigate(`add`)}}>Add A New List</button>
+            </div>
 
 
             <div className="list">

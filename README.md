@@ -25,6 +25,6 @@ WishList provides a platform for you to create, add, edit, or delete a wish list
 ## ERD
 ![Screen Shot 2023-01-03 at 3 11 41 PM](https://user-images.githubusercontent.com/108637597/210442742-fa714d61-e24e-42e0-92b8-c4cfa4434952.png)
 
-## Help 
-Where/How can users get help with your project?
-Contributions - Who contributed to this project/What did they contribute?
+
+## Author
+Jordon Perkins 

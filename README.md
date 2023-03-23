@@ -8,15 +8,20 @@ WishList provides a platform for you to create, add, edit, or delete a wish list
 
 ## Getting Started
 1. Clone this repository
+
 2. `cd` into the directory
+
 3. Install the necessary packages:
   * `npm install`
   * `npm i --save react react-dom react-router-dom reactstrap`
   * `npm i --save bootstrap`
   * `npm install json-server`
-  * `mkdir api` and `touch database.json to create the database`
+  
 4. Copy and paste sample api below into the database
+  *`https://github.com/Jordon-Perkins/Wish-List-Api-NSS`
+
 5. Run `json-server -w database.json -p 8088` from the api directory
+
 6. In a separate terminal, run `npm start` from the repository directory
 
 ## Wireframe
